@@ -16,7 +16,7 @@ export  const MY_WORKS: readonly MyWork[] = [
         "ドローンに搭載して観測を行うデバイス、観測を自動操縦で行うシステム、観測データを視覚化するソフト",
       description:
         "地方大学の研究室からの依頼で、DJIの産業用ドローンを用いた観測システムの開発と運用を行なった。3名のチームを構成し、観測機器の制作と視覚化ソフトについては共同で制作したほか、SDKを利用しそれらを接続する組み込みプログラムや搭載したUbuntuのセットアップなどを開発した。",
-      image: "/drone_system_visualize.jpg",
+      image: "/drone_system_visualize.webp",
       year: "2023 - ",
     },
     {
@@ -26,7 +26,7 @@ export  const MY_WORKS: readonly MyWork[] = [
         "店舗でスタンプを貯めたり、クーポンに交換することができるiOS/Androidアプリケーション。<br/><br/>紙で配布していた会員証の移行と、ユーザー拡大のためヒアリング、見積もり、チーム管理、開発、公開を担当した。",
       url: "https://apps.apple.com/jp/app/%E3%82%8F%E3%81%A3%E3%81%97%E3%82%87%E3%81%84%E5%85%AC%E5%BC%8F%E3%82%A2%E3%83%97%E3%83%AA/id6467764359",
       linkTitle: "App Store「わっしょい公式アプリ」",
-      image: "/ramen_chain_app.jpg",
+      image: "/ramen_chain_app.webp",
       year: "2022 - ",
     },
     {
@@ -35,7 +35,7 @@ export  const MY_WORKS: readonly MyWork[] = [
       description: "スマートフォン等の保険を紹介、誘導するウェブサイト",
       url: "https://sumahoke.jp/",
       linkTitle: "スマホケ｜月々100円からいつでも加入可能｜携帯スマート保険",
-      image: "/sumahoke.jpg",
+      image: "/sumahoke.webp",
       year: "2022",
     },
     {
@@ -45,7 +45,7 @@ export  const MY_WORKS: readonly MyWork[] = [
         "社内プロジェクトとして製造開発が始まったスイーツを販売するため、専用の特化したサイトを開発。立ち上げや主要な機能の実装を行って以降開発を継続している。<br/>保守性やスピード感からReact, Tailwind CSS, Firebase, Stripeを使用。",
       url: "https://bene-regalo.com/",
       linkTitle: "ティラミス専門店 - BENE REGALO",
-      image: "/bene_regalo.jpg",
+      image: "/bene_regalo.webp",
       year: "2021 - 2023",
     },
     {
@@ -55,7 +55,7 @@ export  const MY_WORKS: readonly MyWork[] = [
         "百店舗規模の美容サロンが販売を行う男性向けコスメや美容家電のLP",
       url: "https://m-clear.jp/lp?u=homeclear",
       linkTitle: "【公式】MCLEAR（エムクリア）｜HOMECLEAR（ホームクリア）",
-      image: "/mclear.jpg",
+      image: "/mclear.webp",
       year: "2022",
     },
     {
