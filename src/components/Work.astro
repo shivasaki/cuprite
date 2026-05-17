@@ -1,0 +1,58 @@
+---
+import type { MyWork } from "../types";
+
+type Props = MyWork;
+const { title, description, image, linkTitle, url, year } = Astro.props;
+---
+
+<div class:list={["work", { noImage: image ? false : true }]}>
+  {image && <img src={image} alt={title} />}
+  <div class="content">
+    <h2>{title}</h2>
+    <p class="year">{year}</p>
+    <p class="description" set:html={description} />
+    <a class="link" href={url} target="_blank" rel="noopener noreferrer"
+      >{linkTitle}</a
+    >
+  </div>
+</div>
+
+<style>
+  .work {
+    min-height: 512px;
+    margin-bottom: 4rem;
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    border-radius: 12px;
+  }
+  .work .content {
+    padding: 1rem 2rem;
+  }
+  .work img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+  }
+  .noImage {
+    min-height: 0;
+    h2 {
+      margin-top: 1rem;
+    }
+  }
+  .year {
+    font-size: smaller;
+    color: rgb(var(--gray));
+    margin-top: 0;
+  }
+  .description {
+    margin-top: 0;
+    font-size: smaller;
+  }
+  .link {
+    color: var(--accent);
+    font-size: smaller;
+  }
+  @media (max-width: 720px) {
+  }
+</style>

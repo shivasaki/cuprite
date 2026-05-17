@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import Work from "../components/Work.astro";
+import { MY_WORKS } from "../consts";
+
+const works = MY_WORKS;
+---
+
+<Layout
+  title="制作物"
+  description="hoshiの制作物"
+  updatedDate={new Date("February 20 2023")}
+>
+  {works.map((work) => <Work {...work} />)}
+</Layout>
