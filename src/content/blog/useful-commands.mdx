@@ -1,0 +1,38 @@
+---
+title: 'ちょっと使えるコマンド集'
+description: 'たまに使いたくなるコマンドをまとめました。'
+pubDate: '2024-03-03'
+---
+
+## movからmp4に変換する (mac)
+
+https://qiita.com/hsylife/items/27732fad752cc9433100 のコピー（アクセス 2025/01/14 11:34 最終更新日 2018年09月04日 投稿日 2018年09月04日 @hsylife(星野 佑太)）
+
+#### .h265をインストールする
+
+`$ brew reinstall ffmpeg --with-fdk-aac --with-freetype --with-libass --with-libvpx  --with-sdl2 --with-x265`
+
+#### 変換コマンド
+
+- mymov.movからh265の同名のmp4を書き出す
+
+`$ ffmpeg -i mymov.mov -vcodec libx265 mymov.mp4`
+
+- quicktimeで再生できる最高品質のmp4を書き出す
+
+`$ ffmpeg -i mymov.mov -crf 1 -pix_fmt yuv420p mymov.mp4`
+
+- Androidで再生できないmp4を直す
+
+`$ ffmpeg -i input.mp4 -c:v libx264 -preset fast -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -b:a 128k output.mp4`
+
+## $PATHを1行ずつ確認
+
+`$ echo $PATH | tr ':' '\n'`
+
+## ミリ秒から時刻に
+
+`$ date -u -r $(echo "1730956081000 / 1000" | bc)`
+
+## 音を鳴らす (mac)
+`$ afplay /System/Library/Sounds/Submarine.aiff`
