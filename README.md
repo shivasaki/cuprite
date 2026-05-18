@@ -1,68 +1,59 @@
-# Astro Starter Kit: Blog
+# cuprite
 
-```sh
-npm create astro@latest -- --template blog
-```
+SEI hoshi（柴崎星汰）の個人サイト。ポートフォリオ・ブログ・経歴を掲載しています。
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+https://sei-hoshi.com
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 技術スタック
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+- [Astro.js](https://astro.build/) v4 — SSRフレームワーク
+- MDX — ブログ記事の執筆
+- Cloudflare Pages — ホスティング
+- pnpm — パッケージマネージャー
 
-Features:
+## ページ構成
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+| パス | 内容 |
+| :--- | :--- |
+| `/` | トップページ（最新記事3件表示） |
+| `/works` | 制作実績一覧 |
+| `/blog` | ブログ記事一覧 |
+| `/blog/[slug]` | ブログ記事詳細 |
+| `/resume` | 経歴 |
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## ディレクトリ構成
 
 ```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+src/
+├── components/   # 共通コンポーネント
+├── content/
+│   └── blog/     # ブログ記事（.mdx）
+├── layouts/      # ページレイアウト
+├── pages/        # ルーティング
+├── styles/       # グローバルCSS
+├── consts.ts     # サイト定数・制作実績データ
+└── types.ts      # 型定義
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## コマンド
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+pnpm install       # 依存関係のインストール
+pnpm dev           # 開発サーバー起動（localhost:4321）
+pnpm build         # プロダクションビルド
+pnpm preview       # ビルド結果のプレビュー
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## ブログ記事の追加
 
-Any static assets, like images, can be placed in the `public/` directory.
+`src/content/blog/` に `.mdx` ファイルを追加する。
 
-## 🧞 Commands
+```mdx
+---
+title: "記事タイトル"
+description: "記事の概要"
+pubDate: "2024-01-01"
+---
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+本文...
+```
