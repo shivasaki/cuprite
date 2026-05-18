@@ -1,0 +1,62 @@
+---
+title: "Flutterでつまずいたことと解決"
+description: "Flutterで開発していてつまずいたこととその解決方法をまとめました。"
+pubDate: "2024-03-02"
+---
+
+## 同期警告
+ウィジェットのマウントを待たないといけない
+
+`if (!context.mounted) return;`
+
+## iOS podfileが古い
+```code:エラー文
+Error: CocoaPods's specs repository is too out-of-date to satisfy dependencies.
+To update the CocoaPods specs, run:
+pod repo update
+Error running pod install
+Error launching application on iPhone 15.
+Exited (1).
+```
+
+このようなものが出たら`podfile.lock`を削除。再度実行すると依存関係を構築し直してくれる。
+CocoaPodsの機能でパッケージのアップデートを行うことがiOS開発としては定石らしいがそれでは解決しない（DartがCocoaPodsを経由する都合？）
+
+### iOSプラグインのバージョン要件
+
+```code:エラー文
+Error: The plugin "google_maps_flutter_ios" requires a higher minimum iOS deployment version than your application is targeting.
+To build, increase your application's deployment target to at least 14.0 as described at https://docs.flutter.dev/deployment/ios
+Error running pod install
+Error launching application on iPhone 15.
+Exited (1).
+```
+
+リンク先のガイドは以下の通りだが、直らないときがある。
+
+> Xcodeを起動して`Runner`の設定を開き、`iOS Deployment Target`を指定。
+> `ios/Flutter/AppFrameworkInfo.plist`にある`MinimumOSVersion`の設定も必要
+
+その場合は`ios/Podfile`の`platform :ios, '12.0'`といった部分を変更しなければならない。（ファイル内コメントの通りこの行を無効化しても解決する。この場合のバージョンは？）
+
+## iOS FIrebaseパッケージのエラー
+
+```code:エラー文
+Swift Compiler Error (Xcode): Value of optional type '(any StorageProvider)?'
+must be unwrapped to refer to member 'storage' of wrapped base type
+'any StorageProvider'
+`ios/Podfile`に`$FirebaseSDKVersion = '10.22.0'`などを追記。
+```
+
+このまま→https://zenn.dev/gen_kk/articles/bcc0a7ac47868c
+
+## Android APIレベル指定
+
+Google Play デベロッパー プログラム ポリシーによりAndroid 14（API レベル 34） 以降を対象とする必要があるが`public  final int minSdkVersion = 21`という記述になっており設定しないと対応できない。
+`flutter.minSdk`などを使いたいがSDKの変なところ: `<SDK install folder>/flutter/packages/flutter_tools/gradle/src/main/groovy` にある（[参考](https://blog.mori-soft.com/entry/2023/05/20/100000) ）が弄りたくないので都度`android/app/buiid.gradle`を指定。
+
+## Firestoreのオブジェクトに存在しないキーでアクセス
+
+https://stackoverflow.com/questions/64949640/flutter-unhandled-exception-bad-state-field-does-not-exist-within-the-documen
+
+なぜかnullチェックすると`I/flutter ( 6257): Bad state: field "property_name" does not exist within the DocumentSnapshotPlatform`で失敗するので`.data()['property_name']`で呼び出し
